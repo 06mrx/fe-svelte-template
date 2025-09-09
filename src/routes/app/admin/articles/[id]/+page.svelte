@@ -150,7 +150,7 @@
 					{#if article.image_url}
 						<div class="relative overflow-hidden">
 							<img
-								src={PUBLIC_API_URL + '/public/app/' + article.image_url}
+								src={PUBLIC_API_URL + '/public/' + article.image_url}
 								alt={article.title}
                                 loading="lazy" 
 								class="h-96 w-full object-cover transition-transform duration-500 hover:scale-105"
