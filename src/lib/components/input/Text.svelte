@@ -79,7 +79,7 @@
       : 'focus:border-indigo-500 focus:ring-indigo-500'}"
     {placeholder}
     bind:value
-    on:input={() => {
+    oninput={() => {
       if (type === 'password') {
         checkPasswordStrength(value);
       }
