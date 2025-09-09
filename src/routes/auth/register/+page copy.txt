@@ -1,0 +1,282 @@
+<script lang="ts">
+    import '../../../app.css';
+  import { goto } from '$app/navigation';
+  import { browser } from '$app/environment';
+  import { onMount } from 'svelte';
+  import { page } from '$app/stores';
+  import { PUBLIC_API_URL } from '$env/static/public'; // Gunakan PUBLIC_API_URL dari $env
+  import toast, { Toaster } from 'svelte-french-toast';
+
+  // Import services and utilities
+  import { storageService } from '$lib/services/storageService'; // Digunakan untuk cek otentikasi
+  import { getFirstError } from '$lib/services/functionService'; // Untuk menampilkan error validasi
+
+  // State untuk menyimpan data formulir dan status
+  let name = ''; // Field baru untuk registrasi
+  let email = '';
+  let password = '';
+  let password_confirmation = '';
+  let loading = false; // Mengganti 'loading' sebagai status submit
+  let successMessage = '';
+  let errorMessage = '';
+  let validationErrors: any = {};
+
+  // Password strength indicator logic (dari diskusi sebelumnya)
+  let passwordStrength = 0;
+  
+  // Reactive statement to calculate password strength when 'password' changes
+  // Menggunakan $derived untuk kompatibilitas Runes mode di Svelte 5
+  // Note: di file ini, $: tetap digunakan karena file asli juga menggunakannya.
+  // Jika project Anda sepenuhnya Runes mode, ini harus diubah ke $derived atau $effect.
+  $: {
+      if (password.length === 0) {
+          passwordStrength = 0;
+      } else if (password.length < 6) {
+          passwordStrength = 1;
+      } else if (password.length < 8) {
+          passwordStrength = 2;
+      } else if (password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/) && password.length >= 8) {
+          passwordStrength = 4;
+      } else {
+          passwordStrength = 3;
+      }
+  }
+
+  // Get password strength text and color
+  function getPasswordStrengthInfo() {
+      switch (passwordStrength) {
+          case 0: return { text: '', color: '' };
+          case 1: return { text: 'Lemah', color: 'text-red-500' };
+          case 2: return { text: 'Cukup', color: 'text-yellow-500' };
+          case 3: return { text: 'Baik', color: 'text-blue-500' };
+          case 4: return { text: 'Kuat', color: 'text-green-500' };
+          default: return { text: '', color: '' };
+      }
+  }
+
+  // Fungsi untuk menangani pengiriman formulir registrasi
+  async function handleRegister() {
+    errorMessage = '';
+    successMessage = '';
+    validationErrors = {};
+    loading = true; // Menggunakan 'loading' untuk status submit
+
+    // Validasi sederhana di sisi klien untuk password
+    if (password !== password_confirmation) {
+      errorMessage = 'Password dan konfirmasi password tidak cocok.';
+      loading = false;
+      toast.error(errorMessage);
+      return;
+    }
+    
+    // Minimal panjang password (sesuai indikator)
+    if (password.length < 8) {
+        validationErrors = { password: { length: 'Password minimal 8 karakter.' } };
+        errorMessage = 'Password tidak memenuhi syarat.';
+        loading = false;
+        toast.error(errorMessage);
+        return;
+    }
+
+    try {
+      // Menggunakan PUBLIC_API_URL untuk endpoint register
+      const response = await fetch(`${PUBLIC_API_URL}/api/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Referer: window.location.origin,
+        },
+        body: JSON.stringify({ name, email, password, password_confirmation }) // Kirim semua field registrasi
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        successMessage = result.message || 'Registrasi berhasil! Silakan login.';
+        toast.success(successMessage);
+        name = ''; // Reset form
+        email = '';
+        password = '';
+        password_confirmation = '';
+        loading = false;
+        goto('/auth/login'); // Redirect ke halaman login setelah registrasi berhasil
+      } else if (response.status === 422 || response.status === 400) { // Menangani error validasi atau bad request
+        errorMessage = 'Terdapat kesalahan dalam formulir. Silakan periksa kembali.';
+        validationErrors = result.message; // Asumsikan 'result.message' berisi objek error validasi
+        loading = false;
+        toast.error(errorMessage);
+      } else {
+        errorMessage = result.message || 'Registrasi gagal. Coba lagi.';
+        loading = false;
+        toast.error(errorMessage);
+      }
+    } catch (error: any) {
+      console.error('Registration error:', error);
+      errorMessage = error.message || 'Terjadi kesalahan jaringan.';
+      toast.error(errorMessage);
+    } finally {
+      loading = false;
+    }
+  }
+  
+  // Mengecek jika pengguna sudah login saat komponen dipasang
+  // Pada halaman register, kita biasanya tidak ingin mengarahkan pengguna yang sudah login.
+  // Mereka mungkin ingin membuat akun lain. Jadi, logika ini dinonaktifkan untuk register.
+  onMount(async () => {
+    // // Contoh: Jika Anda tetap ingin mengarahkan pengguna yang sudah login, gunakan ini:
+    // if (browser && storageService.getToken()) {
+    //     const returnUrl = $page.url.searchParams.get('returnUrl') || '/app/dashboard';
+    //     goto(returnUrl, { replaceState: true });
+    // }
+  });
+</script>
+
+<Toaster />
+
+<div class="flex items-center justify-center min-h-[calc(100vh-4rem)] py-6 bg-gray-100">
+  <div class="w-full max-w-md space-y-8 p-8 bg-white rounded-lg shadow-xl border border-gray-200">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold text-gray-900">Daftar Akun Baru</h2>
+      <p class="mt-2 text-sm text-gray-600">
+        Sudah punya akun? <a href="/auth/login" class="font-medium text-indigo-600 hover:text-indigo-500">Masuk di sini</a>
+      </p>
+    </div>
+
+    {#if errorMessage}
+      <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg relative" role="alert">
+        <span class="block sm:inline">{errorMessage}</span>
+      </div>
+    {/if}
+
+    <form class="mt-8 space-y-6" on:submit|preventDefault={handleRegister}>
+      <!-- Input Nama Lengkap -->
+      <div>
+        <label for="name" class="sr-only">Nama Lengkap</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          autocomplete="name"
+          required
+          bind:value={name}
+          class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          class:border-red-500={getFirstError(validationErrors?.name)}
+          placeholder="Nama Lengkap"
+          disabled={loading}
+        />
+        {#if getFirstError(validationErrors?.name)}
+          <p class="text-xs text-red-600 mt-1 flex items-center gap-1">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+            {getFirstError(validationErrors.name)}
+          </p>
+        {/if}
+      </div>
+
+      <!-- Input Email -->
+      <div>
+        <label for="email" class="sr-only">Alamat Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          bind:value={email}
+          class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          class:border-red-500={getFirstError(validationErrors?.email)}
+          placeholder="Alamat Email"
+          disabled={loading}
+        />
+        {#if getFirstError(validationErrors?.email)}
+          <p class="text-xs text-red-600 mt-1 flex items-center gap-1">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+            {getFirstError(validationErrors.email)}
+          </p>
+        {/if}
+      </div>
+
+      <!-- Input Password -->
+      <div>
+        <label for="password" class="sr-only">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="new-password"
+          required
+          bind:value={password}
+          class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          class:border-red-500={getFirstError(validationErrors?.password)}
+          placeholder="Password"
+          disabled={loading}
+        />
+        {#if password.length > 0}
+            <div class="flex items-center gap-2 mt-2">
+                <div class="flex-1 flex gap-1">
+                    {#each Array(4) as _, i}
+                        <div class="h-1.5 flex-1 rounded-full {passwordStrength > i ? (passwordStrength === 1 ? 'bg-red-400' : passwordStrength === 2 ? 'bg-yellow-400' : passwordStrength === 3 ? 'bg-blue-400' : 'bg-green-400') : 'bg-gray-200'}"></div>
+                    {/each}
+                </div>
+                <span class="text-xs font-medium {getPasswordStrengthInfo().color}">
+                    {getPasswordStrengthInfo().text}
+                </span>
+            </div>
+        {/if}
+        {#if getFirstError(validationErrors?.password)}
+            <p class="text-xs text-red-600 mt-1 flex items-center gap-1">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                {getFirstError(validationErrors.password)}
+            </p>
+        {:else}
+            <p class="text-xs text-gray-500 mt-1">Minimal 8 karakter, kombinasi huruf besar/kecil, angka.</p>
+        {/if}
+      </div>
+
+      <!-- Input Konfirmasi Password -->
+      <div>
+        <label for="password_confirmation" class="sr-only">Konfirmasi Password</label>
+        <input
+          id="password_confirmation"
+          name="password_confirmation"
+          type="password"
+          autocomplete="new-password"
+          required
+          bind:value={password_confirmation}
+          class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          class:border-red-500={getFirstError(validationErrors?.password_confirmation) || (password_confirmation.length > 0 && password !== password_confirmation)}
+          placeholder="Konfirmasi Password"
+          disabled={loading}
+        />
+        {#if password_confirmation.length > 0 && password !== password_confirmation}
+            <p class="text-xs text-red-600 mt-1 flex items-center gap-1">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                Password tidak cocok
+            </p>
+        {:else if getFirstError(validationErrors?.password_confirmation)}
+            <p class="text-xs text-red-600 mt-1 flex items-center gap-1">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                {getFirstError(validationErrors.password_confirmation)}
+            </p>
+        {/if}
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={loading}
+        >
+          {#if loading}
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Mendaftar...
+          {:else}
+            Daftar
+          {/if}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
