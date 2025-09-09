@@ -5,7 +5,7 @@
 	import toast, { Toaster } from 'svelte-french-toast';
 
 	// Mengimpor komponen input kustom yang Anda sebutkan
-	import Text from '../../../../../components/input/Text.svelte';
+	import Text from '$lib/components/input/Text.svelte';
 
 	// Mengimpor fungsi fetch kustom
 	import { fetchWithTokenRefresh } from '$lib/services/fetchWithTokenRefresh';
