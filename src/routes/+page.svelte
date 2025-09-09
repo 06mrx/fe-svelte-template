@@ -190,12 +190,12 @@
 							/>
 						</svg>
 					</button>
-					<button
-						onclick={goto('auth/login')}
+					<a
+						href="/auth/login"
 						class="rounded-xl border-2 border-slate-300 px-8 py-4 text-lg font-semibold text-slate-700 transition-all duration-300 hover:border-indigo-300 hover:bg-slate-50"
 					>
 						View Demo
-					</button>
+        </a>
 				</div>
 
 				<!-- Code Preview -->
