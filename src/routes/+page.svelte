@@ -86,7 +86,7 @@
 					<a href="#tech" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
 						>Tech Stack</a
 					>
-					<a href="#demo" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
+					<a href="##" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
 						>Demo</a
 					>
 					<a href="#docs" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
