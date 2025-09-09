@@ -17,7 +17,9 @@ const config = {
 			strict: true
 		}),
 		prerender: {
-			handleUnseenRoutes: 'ignore'
+			handleUnseenRoutes: 'ignore',
+			handleMissingId: 'ignore'
+			
 		}
 
 

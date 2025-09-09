@@ -688,7 +688,7 @@
 
 							<!-- Logout -->
 							<a
-								href="##"
+								href="javascript:void(0)"
 								class="flex items-center px-4 py-2 text-sm text-red-600 transition-colors hover:bg-red-50 hover:text-red-800"
 								onclick={handleLogout}
 							>

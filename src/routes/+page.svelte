@@ -86,7 +86,7 @@
 					<a href="#tech" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
 						>Tech Stack</a
 					>
-					<a href="##" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
+					<a href="javascript:void(0)" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
 						>Demo</a
 					>
 					<a href="#docs" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
@@ -419,7 +419,7 @@
 					</p>
 					<div class="flex space-x-4">
 						<a
-							href="##" aria-label="Twitter"
+							href="javascript:void(0)" aria-label="Twitter"
 							class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-800 text-slate-400 transition-colors hover:bg-slate-700 hover:text-white"
 						>
 							<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -435,18 +435,18 @@
 					<h3 class="mb-6 text-lg font-semibold text-white">Resources</h3>
 					<ul class="space-y-4">
 						<li>
-							<a href="##" class="text-slate-400 transition-colors hover:text-white">Documentation</a
+							<a href="javascript:void(0)" class="text-slate-400 transition-colors hover:text-white">Documentation</a
 							>
 						</li>
 						<li>
-							<a href="##" class="text-slate-400 transition-colors hover:text-white">API Reference</a
+							<a href="javascript:void(0)" class="text-slate-400 transition-colors hover:text-white">API Reference</a
 							>
 						</li>
 						<li>
-							<a href="##" class="text-slate-400 transition-colors hover:text-white">Examples</a>
+							<a href="javascript:void(0)" class="text-slate-400 transition-colors hover:text-white">Examples</a>
 						</li>
 						<li>
-							<a href="##" class="text-slate-400 transition-colors hover:text-white">Tutorials</a>
+							<a href="javascript:void(0)" class="text-slate-400 transition-colors hover:text-white">Tutorials</a>
 						</li>
 					</ul>
 				</div>
@@ -455,16 +455,16 @@
 					<h3 class="mb-6 text-lg font-semibold text-white">Community</h3>
 					<ul class="space-y-4">
 						<li>
-							<a href="##" class="text-slate-400 transition-colors hover:text-white">GitHub</a>
+							<a href="javascript:void(0)" class="text-slate-400 transition-colors hover:text-white">GitHub</a>
 						</li>
 						<li>
-							<a href="##" class="text-slate-400 transition-colors hover:text-white">Discord</a>
+							<a href="javascript:void(0)" class="text-slate-400 transition-colors hover:text-white">Discord</a>
 						</li>
 						<li>
-							<a href="##" class="text-slate-400 transition-colors hover:text-white">Issues</a>
+							<a href="javascript:void(0)" class="text-slate-400 transition-colors hover:text-white">Issues</a>
 						</li>
 						<li>
-							<a href="##" class="text-slate-400 transition-colors hover:text-white">Discussions</a>
+							<a href="javascript:void(0)" class="text-slate-400 transition-colors hover:text-white">Discussions</a>
 						</li>
 					</ul>
 				</div>
