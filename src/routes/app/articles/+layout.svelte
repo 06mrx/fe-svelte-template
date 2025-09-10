@@ -10,7 +10,7 @@
 			<div class="flex h-16 items-center justify-between">
 				<button onclick="{goto('/')}" class="flex items-center space-x-3 hover:cursor-pointer">
 					<div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/50">
-						<img src="/favicon/favicon-32x32.png" loading="lazy" alt="favicon" title="favicon" />
+						<img src="/favicon/favicon-96x96.png" loading="lazy" alt="favicon" title="favicon" />
 					</div>
 					<span class="text-2xl font-bold text-slate-900">{PUBLIC_APP_NAME}</span>
 				</button>
