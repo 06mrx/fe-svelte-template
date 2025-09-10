@@ -94,7 +94,7 @@
 			<div class="flex h-16 items-center justify-between">
 				<div class="flex items-center space-x-3">
 					<div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/50">
-						<img src="/favicon/favicon-32x32.png" loading="lazy" alt="favicon" />
+						<img src="/favicon/favicon-32x32.png" loading="lazy" alt="favicon" title="favicon" />
 					</div>
 					<span class="text-2xl font-bold text-slate-900">{PUBLIC_APP_NAME}</span>
 				</div>
@@ -155,7 +155,7 @@
 					</span>
 				</div>
         <div class="flex w-full justify-center">
-          <img src="/logo.webp" class=" w-56" alt="logo" loading="lazy"/>
+          <img src="/logo.webp" class=" w-56" alt="logo" title="logo" loading="lazy"/>
         </div>
 				<h1
 					class="mb-8 text-5xl leading-tight font-bold text-slate-900 lg:text-7xl {isVisible
@@ -291,7 +291,7 @@
 						<div
 							class="mb-6 absolute -top-9 left-0  flex h-16 w-full items-center justify-center rounded-2xl  transition-transform duration-300 group-hover:scale-110"
 						>
-							<img src={feature.icon} loading="lazy" class="h-16   p-1 bg-slate-200/80 rounded-2xl" alt="feature">
+							<img src={feature.icon} loading="lazy" title="feature" class="h-16   p-1 bg-slate-200/80 rounded-2xl" alt="feature">
 						</div>
 						<h3 class="mb-3 text-xl font-bold text-slate-900">{feature.title}</h3>
 						<p class="mb-4 leading-relaxed text-slate-600">{feature.description}</p>
@@ -358,7 +358,7 @@
 						<div
 							class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-100 to-white text-4xl transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg"
 						>
-							<img src={tech.icon} loading="lazy" alt="feature">
+							<img src={tech.icon} loading="lazy" alt="feature" title="feature">
 						</div>
 						<h3 class="mb-2 text-xl font-bold text-slate-900">{tech.name}</h3>
 						<p class="text-sm text-slate-600">{tech.description}</p>
@@ -430,7 +430,7 @@
 						<div
 							class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 p-1"
 						>
-							<img loading="lazy" src="/logo.webp" class=" w-56" alt="logo" />
+							<img loading="lazy" src="/logo.webp" class=" w-56" alt="logo" title="logo" />
 						</div>
 						<span class="text-2xl font-bold text-white">{PUBLIC_APP_NAME}</span>
 					</div>
