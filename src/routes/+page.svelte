@@ -78,13 +78,13 @@
   <meta property="og:title" content="Go-SvelteX - Authentication, Authorization & Accounting" />
   <meta property="og:description" content='Slate Modern Admin - Dashboard admin yang elegan dan modern dengan design system terkini. Fitur lengkap untuk manajemen user, artikel, role & permission dengan visualisasi data yang stunning menggunakan gradient slate dan indigo palette' />
   <meta property="og:url" content="https://go-sveltex.cloudlabx.online" />
-  <meta property="og:image" content='/logo.png' />
+  <meta property="og:image" content='/logo.webp' />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Go-SvelteX - Authentication, Authorization & Accounting" />
   <meta name="twitter:description" content='Slate Modern Admin - Dashboard admin yang elegan dan modern dengan design system terkini. Fitur lengkap untuk manajemen user, artikel, role & permission dengan visualisasi data yang stunning menggunakan gradient slate dan indigo palette' />
-  <meta name="twitter:image" content='/logo.png' />
+  <meta name="twitter:image" content='/logo.webp' />
 </svelte:head>
 
 <main class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
@@ -155,7 +155,7 @@
 					</span>
 				</div>
         <div class="flex w-full justify-center">
-          <img src="/logo.png" class=" w-56" alt="logo" loading="lazy"/>
+          <img src="/logo.webp" class=" w-56" alt="logo" loading="lazy"/>
         </div>
 				<h1
 					class="mb-8 text-5xl leading-tight font-bold text-slate-900 lg:text-7xl {isVisible
@@ -291,7 +291,7 @@
 						<div
 							class="mb-6 absolute -top-9 left-0  flex h-16 w-full items-center justify-center rounded-2xl  transition-transform duration-300 group-hover:scale-110"
 						>
-							<img src={feature.icon} loading="lazy" class="h-16   p-1 bg-slate-200/80 rounded-2xl" alt="">
+							<img src={feature.icon} loading="lazy" class="h-16   p-1 bg-slate-200/80 rounded-2xl" alt="feature">
 						</div>
 						<h3 class="mb-3 text-xl font-bold text-slate-900">{feature.title}</h3>
 						<p class="mb-4 leading-relaxed text-slate-600">{feature.description}</p>
@@ -358,7 +358,7 @@
 						<div
 							class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-100 to-white text-4xl transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg"
 						>
-							<img src={tech.icon} loading="lazy" alt="">
+							<img src={tech.icon} loading="lazy" alt="feature">
 						</div>
 						<h3 class="mb-2 text-xl font-bold text-slate-900">{tech.name}</h3>
 						<p class="text-sm text-slate-600">{tech.description}</p>
@@ -430,7 +430,7 @@
 						<div
 							class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 p-1"
 						>
-							<img loading="lazy" src="/logo.png" class=" w-56" alt="logo" />
+							<img loading="lazy" src="/logo.webp" class=" w-56" alt="logo" />
 						</div>
 						<span class="text-2xl font-bold text-white">{PUBLIC_APP_NAME}</span>
 					</div>

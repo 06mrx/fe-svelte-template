@@ -83,13 +83,13 @@
   <meta property="og:title" content={PUBLIC_APP_NAME + ' - ' + article.title} />
   <meta property="og:description" content={article.content?.slice(0,50)} />
   <meta property="og:url" content={'http://go-sveltex.cloudlabx.online'} />
-  <meta property="og:image" content='/logo.png' />
+  <meta property="og:image" content='/logo.webp' />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={PUBLIC_APP_NAME} />
   <meta name="twitter:description" content={article.content?.slice(0,50)} />
-  <meta name="twitter:image" content={'/logo.png'} />
+  <meta name="twitter:image" content={'/logo.webp'} />
 </svelte:head>
 
 <div class="min-h-[50dvh] bg-gradient-to-br from-slate-50 via-white to-slate-100">

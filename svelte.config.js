@@ -6,7 +6,7 @@ const config = {
     adapter: adapter({
       pages: 'build',
       assets: 'build',
-      fallback: null, // penting! SPA fallback
+      fallback: 'index.html', // penting! SPA fallback
       precompress: false,
       strict: true
     }),
