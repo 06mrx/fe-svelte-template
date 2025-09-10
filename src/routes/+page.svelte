@@ -66,30 +66,7 @@
 	});
 </script>
 
-<svelte:head>
-  <!-- Basic SEO -->
-  <title>{PUBLIC_APP_NAME}</title>
-  <meta name="description" content="Slate Modern Admin - Dashboard admin yang elegan dan modern dengan design system terkini. Fitur lengkap untuk manajemen user, artikel, role & permission dengan visualisasi data yang stunning menggunakan gradient slate dan indigo palette"/>
-  <meta name="robots" content={'index, follow'} />
-  <link rel="canonical" href={'http://go-sveltex.cloudlabx.online'} />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content={PUBLIC_APP_NAME} />
-  <meta property="og:description" content={'Slate Modern Admin - Dashboard admin yang elegan dan modern dengan design system terkini. Fitur lengkap untuk manajemen user, artikel, role & permission dengan visualisasi data yang stunning menggunakan gradient slate dan indigo palette'} />
-  <meta property="og:url" content={'http://go-sveltex.cloudlabx.online'} />
-  <meta property="og:image" content='/logo.png' />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={PUBLIC_APP_NAME} />
-  <meta name="twitter:description" content={'Slate Modern Admin - Dashboard admin yang elegan dan modern dengan design system terkini. Fitur lengkap untuk manajemen user, artikel, role & permission dengan visualisasi data yang stunning menggunakan gradient slate dan indigo palette'} />
-  <meta name="twitter:image" content={'/logo.png'} />
-
-  <!-- Hreflang (opsional, untuk multi-bahasa) -->
-  <!-- <link rel="alternate" hreflang={id} href={hreflang.url} /> -->
-  <!-- {/if} -->
-</svelte:head>
 
 <main class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
 	<!-- Navigation -->
