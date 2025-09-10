@@ -206,10 +206,12 @@
                 validationErrors = result.message;
                 loading = false;
                 toast.error('Terdapat kesalahan dalam formulir. Silakan periksa kembali.');
+                // console.log(validationErrors.image.error)
             } else {
                 errorMessage = result.message || 'Gagal memperbarui artikel.';
                 loading = false;
                 validationErrors = result.message;
+                
                 toast.error("Gagal memperbarui artikel");
             }
         } catch (error) {
@@ -319,6 +321,9 @@
                         class="block w-full rounded-lg px-3 py-2.5 text-sm placeholder-gray-400 shadow-lg transition-colors focus:bg-indigo-500/10"
                         onchange={handleImageUpload}
                     />
+                    {#if validationErrors?.image}
+                        <p class="mt-1 text-sm text-red-600">{validationErrors.image.error}</p>
+                    {/if}
                     {#if imagePreviewUrl}
                         <div class="mt-4">
                             <p class="text-sm font-medium text-gray-700">Pratinjau Gambar:</p>

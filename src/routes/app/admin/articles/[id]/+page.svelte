@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { PUBLIC_API_URL } from '$env/static/public';
+	import { PUBLIC_API_URL, PUBLIC_APP_NAME } from '$env/static/public';
 	import { fetchWithTokenRefresh } from '$lib/services/fetchWithTokenRefresh';
 
 	// State untuk menyimpan data artikel dan status
@@ -72,6 +72,25 @@
 		margin-right: auto;
 	}
 </style>
+<svelte:head>
+  <!-- Basic SEO -->
+  <title>{PUBLIC_APP_NAME + ' - ' + article.title}</title>
+  <meta name="description" content={article.content?.slice(0,50)}/>
+  <meta name="robots" content={'index, follow'} />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={PUBLIC_APP_NAME + ' - ' + article.title} />
+  <meta property="og:description" content={article.content?.slice(0,50)} />
+  <meta property="og:url" content={'http://go-sveltex.cloudlabx.online'} />
+  <meta property="og:image" content='/logo.png' />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={PUBLIC_APP_NAME} />
+  <meta name="twitter:description" content={article.content?.slice(0,50)} />
+  <meta name="twitter:image" content={'/logo.png'} />
+</svelte:head>
 
 <div class="min-h-[50dvh] bg-gradient-to-br from-slate-50 via-white to-slate-100">
 	<div class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
