@@ -15,8 +15,7 @@ import { PUBLIC_API_URL } from '$env/static/public';
 export async function fetchWithTokenRefresh(url, options = {}, retryCount = 0) {
     // Get the token from storage
     const token = storageService.getToken();
-
-
+    
 
     // Add authorization header to the request
     const headers = new Headers(options.headers);

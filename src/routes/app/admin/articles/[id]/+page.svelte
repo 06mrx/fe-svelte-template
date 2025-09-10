@@ -2,7 +2,7 @@
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
     import { PUBLIC_APP_NAME, PUBLIC_API_URL } from '$env/static/public';
-
+    
     // Ambil data dari load server
     let {data} = $props();
     
@@ -39,7 +39,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content={PUBLIC_APP_NAME + (article ? ' - ' + article.title : '')} />
   <meta property="og:description" content={article?.content?.slice(0,50)} />
-  <meta property="og:url" content="http://go-sveltex.cloudlabx.online" />
+  <meta property="og:url" content={$page.url.href} />
   <meta property="og:image" content={article?.image_url ? PUBLIC_API_URL + '/public/' + article.image_url : '/logo.webp'} />
 
   <!-- Twitter -->

@@ -1,11 +1,11 @@
 import { PUBLIC_API_URL } from '$env/static/public';
-import { fetchWithTokenRefresh } from '$lib/services/fetchWithTokenRefresh';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
+export async function load({ params, fetch }) {
     const articleId = params.id;
     try {
-        const response = await fetchWithTokenRefresh(`${PUBLIC_API_URL}/api/articles/${articleId}`, {
+        // Menggunakan fetch langsung dari SvelteKit untuk endpoint publik.
+        const response = await fetch(`${PUBLIC_API_URL}/api/articles/${articleId}`, {
             method: 'GET'
         });
 
