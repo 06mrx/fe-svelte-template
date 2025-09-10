@@ -101,7 +101,7 @@
 
 				<div class="hidden items-center space-x-8 md:flex">
 					<a
-						href="#features"
+						href="javascript:void(0)"
 						class="font-medium text-slate-600 transition-colors hover:text-indigo-600">Features</a
 					>
 					<a href="#tech" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
@@ -110,7 +110,7 @@
 					<a href="javascript:void(0)" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
 						>Demo</a
 					>
-					<a href="#docs" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
+					<a href="javascript:void(0)" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
 						>Docs</a
 					>
 				</div>

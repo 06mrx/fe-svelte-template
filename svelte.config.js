@@ -6,22 +6,11 @@ const config = {
     adapter: adapter({
       pages: 'build',
       assets: 'build',
-      fallback: 'index.html', // penting! SPA fallback
+      fallback: null, // jangan pakai index.html
       precompress: false,
-      strict: true
+      strict: true,
+      precompress: true
     }),
-    paths: {
-      base: '',
-      //   assets: '/'  // absolute path untuk _app
-    },
-    prerender: {
-      handleUnseenRoutes: 'ignore',
-      handleMissingId: 'ignore',
-      entries: [
-        '/',
-      ]
-
-    }
   }
 };
 
