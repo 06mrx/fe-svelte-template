@@ -66,7 +66,26 @@
 	});
 </script>
 
+<svelte:head>
+	<!-- Basic SEO -->
+  <title>Go-SvelteX - Authentication, Authorization & Accounting - Everything you need for enterprise-grade admin system</title>
+  <meta name="description" content="Slate Modern Admin - Dashboard admin yang elegan dan modern dengan design system terkini. Fitur lengkap untuk manajemen user, artikel, role & permission dengan visualisasi data yang stunning menggunakan gradient slate dan indigo palette"/>
+  <meta name="robots" content='index, follow' />
+  <link rel="canonical" href='https://go-sveltex.cloudlabx.online' />
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Go-SvelteX - Authentication, Authorization & Accounting" />
+  <meta property="og:description" content='Slate Modern Admin - Dashboard admin yang elegan dan modern dengan design system terkini. Fitur lengkap untuk manajemen user, artikel, role & permission dengan visualisasi data yang stunning menggunakan gradient slate dan indigo palette' />
+  <meta property="og:url" content="https://go-sveltex.cloudlabx.online" />
+  <meta property="og:image" content='/logo.png' />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Go-SvelteX - Authentication, Authorization & Accounting" />
+  <meta name="twitter:description" content='Slate Modern Admin - Dashboard admin yang elegan dan modern dengan design system terkini. Fitur lengkap untuk manajemen user, artikel, role & permission dengan visualisasi data yang stunning menggunakan gradient slate dan indigo palette' />
+  <meta name="twitter:image" content='/logo.png' />
+</svelte:head>
 
 <main class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
 	<!-- Navigation -->
