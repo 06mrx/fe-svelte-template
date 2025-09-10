@@ -73,7 +73,7 @@
 	}
 </style>
 
-<div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+<div class="min-h-[100dvh] bg-gradient-to-br from-slate-50 via-white to-slate-100">
 	<div class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
 		<!-- Header dengan tombol kembali -->
 		<header class="mb-8">
