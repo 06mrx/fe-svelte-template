@@ -2,8 +2,8 @@
 	import { goto } from '$app/navigation';
 	import { PUBLIC_APP_NAME } from '$env/static/public';
 	import { onMount } from 'svelte';
-
-	let isVisible = false;
+	export const prerender = true;
+	let isVisible = false;	
 	let currentFeature = 0;
 
 	const features = [
