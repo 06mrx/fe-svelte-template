@@ -715,7 +715,7 @@
 
 		<!-- Main Content -->
 		<main class="flex-1 overflow-y-auto bg-gray-50">
-			<div class="h-full px-2">
+			<div class="min-h-[100dvh] px-2">
 				<slot />
 			</div>
 		</main>
