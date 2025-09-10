@@ -108,10 +108,10 @@
 						>Tech Stack</a
 					>
 					<a href="javascript:void(0)" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
-						>Demo</a
-					>
-					<a href="javascript:void(0)" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
 						>Docs</a
+					>
+					<a href="/app/articles" class="font-medium text-slate-600 transition-colors hover:text-indigo-600"
+						>Articles</a
 					>
 				</div>
 
