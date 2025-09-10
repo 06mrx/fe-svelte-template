@@ -176,7 +176,7 @@
 
 <Toaster />
 <!-- Main Container -->
-<div class="relative flex h-screen w-screen overflow-hidden bg-gray-50">
+<div class="relative flex min-h-[100dvh] w-full bg-gray-50">
 	<!-- Mobile Backdrop -->
 	{#if isSidebarOpen && isMobile}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -189,7 +189,7 @@
 
 	<!-- Sidebar -->
 	<div
-		class="z-50 flex h-screen w-72 transform flex-col rounded-r-lg bg-slate-900 transition-all duration-300 ease-in-out"
+		class="z-50 flex min-h-[100dvh]  w-72 transform flex-col rounded-r-lg bg-slate-900 transition-all duration-300 ease-in-out"
 		class:fixed={isMobile}
 		class:absolute={!isMobile && !isSidebarOpen}
 		class:relative={!isMobile && isSidebarOpen}
