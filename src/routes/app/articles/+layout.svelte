@@ -1,10 +1,12 @@
 <script>
 	import { goto } from "$app/navigation";
-	import { PUBLIC_APP_NAME } from "$env/static/public";
-
+	import { PUBLIC_APP_NAME } from "$env/static/public";	
+	import { progressStore } from "$lib/services/fetchWithTokenRefresh";
+	import ProgressBar from "$lib/components/ProgressBar.svelte";
     
 </script>
 <main class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+	<ProgressBar progressStore={$progressStore} />
     <nav class="relative sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-lg">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 			<div class="flex h-16 items-center justify-between">

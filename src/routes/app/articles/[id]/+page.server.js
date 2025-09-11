@@ -4,7 +4,7 @@ import { PUBLIC_API_URL } from '$env/static/public';
 export async function load({ params, fetch }) {
     const articleId = params.id;
     try {
-        // Menggunakan fetch langsung dari SvelteKit untuk endpoint publik.
+        // Menggunakan fetch bawaan dari SvelteKit, yang dioptimalkan untuk server-side rendering (SSR).
         const response = await fetch(`${PUBLIC_API_URL}/api/articles/${articleId}`, {
             method: 'GET'
         });

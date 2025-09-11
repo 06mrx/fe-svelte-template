@@ -12,7 +12,9 @@
 	import { PUBLIC_API_URL, PUBLIC_APP_NAME } from '$env/static/public';
 	import toast, { Toaster } from 'svelte-french-toast';
 	import { capitalizeFirst } from '$lib/services/functionService';
-	import { fetchWithTokenRefresh } from '$lib/services/fetchWithTokenRefresh';
+    import { fetchWithTokenRefresh, progressStore } from '$lib/services/fetchWithTokenRefresh';
+	import ProgressBar from '$lib/components/ProgressBar.svelte';
+
 
 	const TOKEN = storageService.getToken();
 
@@ -175,6 +177,7 @@
 </script>
 
 <Toaster />
+<ProgressBar progressStore={$progressStore} />
 <!-- Main Container -->
 <div class="relative flex h-[100dvh] w-screen  bg-gray-50">
 	<!-- Mobile Backdrop -->
